@@ -51,6 +51,6 @@
   "dependencies": {
     "@sinclair/typebox": "^0.29.4",
     "fast-querystring": "^1.1.2",
-    "uWebSockets.js": "uNetworking/uWebSockets.js#v20.30.0"
+    "uWebSockets.js": "uNetworking/uWebSockets.js#v20.49.0"
   }
 }
