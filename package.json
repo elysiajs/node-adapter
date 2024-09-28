@@ -12,8 +12,8 @@
   },
   "main": "./dist/index.js",
   "devDependencies": {
+    "@types/bun": "^1.1.10",
     "@types/node": "^20.4.1",
-    "bun-types": "^0.6.13",
     "elysia": "^0.6.0-alpha.1",
     "eslint": "^8.44.0",
     "rimraf": "4.4.1",
