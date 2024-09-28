@@ -10,24 +10,23 @@
     "type": "git",
     "url": "https://github.com/elysiajs/node-adapter"
   },
-  "main": "./dist/index.js",
+  "main": "./dist/cjs/index.js",
   "devDependencies": {
     "@types/node": "^20.4.1",
     "bun-types": "^0.6.13",
     "elysia": "^0.6.0-alpha.1",
     "eslint": "^8.44.0",
-    "rimraf": "4.4.1",
     "ts-node": "^10.9.1",
+    "tsup": "^8.3.0",
     "typescript": "^5.1.6"
   },
   "peerDependencies": {
     "elysia": ">= 0.6.0-alpha.1"
   },
   "exports": {
-    "require": "./dist/cjs/index.js",
-    "import": "./dist/index.js",
-    "node": "./dist/index.js",
-    "default": "./dist/index.js"
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.mjs",
+    "require": "./dist/cjs/index.js"
   },
   "bugs": "https://github.com/elysiajs/node-adapter/issues",
   "description": "Node adapter plugin for Elysia",
@@ -42,12 +41,10 @@
   "scripts": {
     "dev": "ts-node example/index.ts",
     "test": "bun wiptest",
-    "build": "rimraf dist && npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc --project tsconfig.cjs.json",
-    "build:esm": "tsc --project tsconfig.esm.json",
+    "build": "rm -rf dist && bun build.ts",
     "release": "npm run build && npm run test && npm publish --access public"
   },
-  "types": "./src/index.ts",
+  "types": "./dist/index.d.ts",
   "dependencies": {
     "@sinclair/typebox": "^0.29.4",
     "fast-querystring": "^1.1.2",
