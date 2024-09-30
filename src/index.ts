@@ -82,7 +82,7 @@ export const node =
                 }
 
                 const context = {
-                    ...app.decorators,
+                    ...app.decorator,
                     set,
                     params,
                     store: app.store,
