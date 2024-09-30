@@ -21,8 +21,8 @@ const readStream = (req: HttpRequest, res: HttpResponse) =>
         try {
             let data = Buffer.from('')
             res.onData((chunk, isLast) => {
-                if (isLast) resolve(Buffer.concat([data, Buffer.from(chunk)]))
-                else data = Buffer.concat([data, Buffer.from(chunk)])
+                data = Buffer.concat([data, Buffer.from(chunk)])
+                if (isLast) resolve(data)
             }).onAborted(() => reject(''))
         } catch (err) {
             reject(err)
