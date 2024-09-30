@@ -40,8 +40,7 @@ const toResponse = async (res: HttpResponse, response: Response) => {
 export const node =
     (port: number, callback: (socket: us_listen_socket) => any = () => {}) =>
     (app: Elysia) => {
-        // @ts-ignore
-        const routes: InternalRoute<any>[] = app.routes
+        const routes: InternalRoute[] = app.routes
 
         const server = App()
 
