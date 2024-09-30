@@ -16,5 +16,7 @@ import { node } from '@elysiajs/node'
 
 const app = new Elysia()
     .get('/', () => 'hi')
-    .use(node(8080))
+    .use(node(8080, (socket) => {
+        console.log(`Node server running at http://localhost:${port}`)
+    }))
 ```
