@@ -66,7 +66,7 @@ export const node =
                 const params: Record<string, string> = {}
 
                 for (const [name, index] of ids)
-                    params[name] = req.getParameter(index)
+                    params[name] = req.getParameter(index)!
 
                 const request = new Request(`http://a.aa${path}`, {
                     body:
