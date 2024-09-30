@@ -108,7 +108,7 @@ export const node =
                     return void toResponse(
                         res,
                         // @ts-ignore
-                        await app.handleError(request, error as Error, set)
+                        await app.handleError({ request, set }, error as Error)
                     )
                 }
             })
@@ -140,14 +140,14 @@ export const node =
 
             const response = mapResponse(
                 // @ts-ignore
-                await app.handleError(request, new NotFoundError(), set),
+                await app.handleError({ request, set }, new NotFoundError()),
                 set
             )
 
             await toResponse(
                 res,
                 // @ts-ignore
-                await app.handleError(request, new NotFoundError(), set)
+                await app.handleError({ request, set }, new NotFoundError())
             )
         })
 
