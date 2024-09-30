@@ -144,11 +144,7 @@ export const node =
                 set
             )
 
-            await toResponse(
-                res,
-                // @ts-ignore
-                await app.handleError(request, new NotFoundError(), set)
-            )
+            return void toResponse(res, response)
         })
 
         server.listen(port, (port) => {
