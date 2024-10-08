@@ -40,15 +40,14 @@ const toResponse = async (res: HttpResponse, response: Response) => {
 export const node =
     (port: number, callback: (socket: us_listen_socket) => any = () => {}) =>
     (app: Elysia) => {
+        app.compile()
+
         // @ts-ignore
         const routes: InternalRoute<any>[] = app.routes
 
         const server = App()
 
         for (const { method, path, composed: handle } of routes) {
-            // @ts-ignore
-            app.compile()
-
             const ids = path
                 .split('/')
                 .filter((name) => name.startsWith(':'))
