@@ -10,6 +10,7 @@ import {
     mapResponse,
     mapEarlyResponse,
     NotFoundError,
+    type ComposedHandler,
     type Context,
     type HTTPMethod,
     type InternalRoute
@@ -40,8 +41,7 @@ const toResponse = async (res: HttpResponse, response: Response) => {
 export const node =
     (port: number, callback: (socket: us_listen_socket) => any = () => {}) =>
     (app: Elysia) => {
-        // @ts-ignore
-        const routes: InternalRoute<any>[] = app.routes
+        const routes: InternalRoute[] = app.routes
 
         const server = App()
 
@@ -83,7 +83,7 @@ export const node =
                 }
 
                 const context = {
-                    ...app.decorators,
+                    ...app.decorator,
                     set,
                     params,
                     store: app.store,
@@ -103,12 +103,12 @@ export const node =
                 }
 
                 try {
-                    return void toResponse(res, await handle(context))
+                    return void toResponse(res, await (handle as ComposedHandler)(context))
                 } catch (error) {
                     return void toResponse(
                         res,
                         // @ts-ignore
-                        await app.handleError(request, error as Error, set)
+                        await app.handleError({ request, set }, error as Error)
                     )
                 }
             })
@@ -140,14 +140,14 @@ export const node =
 
             const response = mapResponse(
                 // @ts-ignore
-                await app.handleError(request, new NotFoundError(), set),
+                await app.handleError({ request, set }, new NotFoundError()),
                 set
             )
 
             await toResponse(
                 res,
                 // @ts-ignore
-                await app.handleError(request, new NotFoundError(), set)
+                await app.handleError({ request, set }, new NotFoundError())
             )
         })
 

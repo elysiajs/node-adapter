@@ -14,14 +14,14 @@
   "devDependencies": {
     "@types/node": "^20.4.1",
     "bun-types": "^0.6.13",
-    "elysia": "^0.6.0-alpha.1",
+    "elysia": "^1.1.17",
     "eslint": "^8.44.0",
     "rimraf": "4.4.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   },
   "peerDependencies": {
-    "elysia": ">= 0.6.0-alpha.1"
+    "elysia": "^1"
   },
   "exports": {
     "require": "./dist/cjs/index.js",
