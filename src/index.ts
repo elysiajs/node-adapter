@@ -10,6 +10,7 @@ import {
     mapResponse,
     mapEarlyResponse,
     NotFoundError,
+    type ComposedHandler,
     type Context,
     type HTTPMethod,
     type InternalRoute
@@ -102,7 +103,7 @@ export const node =
                 }
 
                 try {
-                    return void toResponse(res, await handle(context))
+                    return void toResponse(res, await (handle as ComposedHandler)(context))
                 } catch (error) {
                     return void toResponse(
                         res,
