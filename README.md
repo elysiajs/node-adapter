@@ -1,3 +1,5 @@
+# Moved to [elysiajs/node](https://github.com/elysiajs/node)
+
 # @elysiajs/node
 
 ### This plugin is in an experimental state (under heavy development), and SHOULD NOT BE USED on production
